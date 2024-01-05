@@ -15,6 +15,7 @@ namespace _10A02app
 {
     public partial class xacminhemail : Form
     {
+        public int z = 0;
         public int k = 0;
         public string checkout(int linenum)
         {
@@ -32,6 +33,13 @@ namespace _10A02app
 
         private void button1_Click(object sender, EventArgs e)
         {
+            z++;
+            button1.Text = "GỬI LẠI";
+            if (z == 7)
+            {
+                MessageBox.Show("Bạn đã gửi lại ≥5 lần, xin hãy kiểm tra lại:\n1.Email chính xác hay không \n2.Kiểm tra đã kết nối internet cho app hay chưa\n3.Kiểm tra thùng thư rác của thư\n Sau đó tắt app bật lại để nhập lại mã", "Xác Minh Email", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                button1.Visible = false;
+            }
             if (email.Text == "" || email.Text==null)
             {
                 MessageBox.Show("Vui lòng nhập email", "Xác Minh Eamil", MessageBoxButtons.OK, MessageBoxIcon.Hand);
@@ -40,7 +48,7 @@ namespace _10A02app
             {
                 try
                 {
-                    MailMessage mail = new MailMessage("mail@10a02.palat001.cf", email.Text, "MÃ XÁC NHẬN CHO ỨNG DỤNG 10A02", "Chào, ĐÂY MÃ XÁC NHẬN CỦA BẠN LÀ:10A02-CODE:" + num.ToString() + ", SAU KHI NHẬP EMAIL CỦA BẠN SẼ ĐƯỢC SỚM LƯU LẠI");
+                    MailMessage mail = new MailMessage("mail@10a02.palat001.cf", email.Text, "MÃ XÁC NHẬN CHO ỨNG DỤNG 10A02", "Chào bạn, <br>MÃ XÁC NHẬN CỦA BẠN LÀ:10A02-CODE:<p style='color:red;'><b>" + num.ToString() + "</b></p>, SAU KHI NHẬP EMAIL CỦA BẠN SẼ ĐƯỢC SỚM LƯU LẠI<br><p style='text-align:center'><strong>(C)PALATDEV</strong></p>");
                     mail.IsBodyHtml = true;
                     SmtpClient client = new SmtpClient("smtp.gmail.com");
                     client.Host = "smtp.gmail.com";
@@ -51,11 +59,11 @@ namespace _10A02app
                     client.Send(mail);
                     MessageBox.Show("Đã gửi mã xác nhận!", "Thông Báo", MessageBoxButtons.OK);
                     button1.Text = "ĐÃ GỬI";
-                    button1.Visible = false;
+                    
                 }
                 catch(Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Xác Minh Eamil", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Xác Minh Email", MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
                 
             }
@@ -69,13 +77,14 @@ namespace _10A02app
             {
                 if (textBox1.Text == num.ToString())
                 {
-                    string[] datap = { };
-                    string cas = "\n" + email.Text;
-                    if (datap == null || datap[1] == "" || datap[0] == " ") {
+                    string datap = File.ReadAllText(checkout(9));
+                    string cas = email.Text;
+                    if (datap == null || datap == "" || datap == " ") {
                         File.WriteAllText(checkout(9),cas);
+                        Application.Restart();
                     }
+
                     
-                    this.Close();
                 }
                 else
                 {

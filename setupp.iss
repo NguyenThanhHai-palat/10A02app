@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "10A02APP"
-#define MyAppVersion "1.0.0.0"
+#define MyAppVersion "1.1.0.0"
 #define MyAppPublisher "PALATDEV INC"
 #define MyAppURL "https://10a02.palat001.cf/"
 #define MyAppExeName "10A02app.exe"
@@ -28,7 +28,7 @@ DisableProgramGroupPage=yes
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 OutputDir=D:\Project Visual\DỰ ÁN 16\10A02app\setup\
-OutputBaseFilename=10a02app1.0.0.0
+OutputBaseFilename=10a02app1.1.0.0
 SetupIconFile=D:\Project Visual\DỰ ÁN 16\10A02app\10A02app\bin\Release\data\logoclass.ico
 Compression=lzma
 SolidCompression=yes
@@ -50,7 +50,7 @@ Root: HKA; Subkey: "Software\Classes\{#MyAppAssocExt}\OpenWithProgids"; ValueTyp
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}"; ValueType: string; ValueName: ""; ValueData: "{#MyAppAssocName}"; Flags: uninsdeletekey
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\{#MyAppExeName},0"
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""%1"""
-Root: HKA; Subkey: "Software\Classes\Applications\{#MyAppExeName}\SupportedTypes"; ValueType: string; ValueName: ".myp"; ValueData: ""
+Root: HKA; Subkey: "Software\Classes\Applications\{#MyAppExeName}\SupportedTypes"; ValueType: string; ValueName: ".nst"; ValueData: ""
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"

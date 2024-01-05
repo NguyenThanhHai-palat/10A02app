@@ -138,7 +138,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "APp";
-            this.Text = "10A02 - V1.0.0.0";
+            this.Text = "10A02 - V1.1.0.0";
             this.TransparencyKey = System.Drawing.Color.SaddleBrown;
             this.Load += new System.EventHandler(this.APp_Load);
             this.ResumeLayout(false);

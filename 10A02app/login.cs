@@ -42,16 +42,36 @@ namespace _10A02app
             }
 
         }
+        
+        public login(string[] args)
+        {
+            checkemail();
+            InitializeComponent();
+            PALATAPP.Readfile readfile = new PALATAPP.Readfile();
+            
+            if (readfile.allText(checkout(8)) == null || readfile.allText(checkout(8)) == "")
+            {
+
+            }
+            else
+            {
+
+                onload();
+                onchecked();
+            }
+            Icon gc = new Icon(checkout(10));
+            this.Icon = gc;
+        }
         public void checkemail()
         {
             string datap;
             try { datap = File.ReadAllText(checkout(9)); } catch { File.WriteAllText(checkout(9), ""); }
             PALATAPP.Readfile r = new PALATAPP.Readfile();
-            string[] dadat = r.allLines(checkout(9));
-            if (dadat[1]=="" || dadat[1] == null)
+            string dadat = r.allText(checkout(9));
+            if (dadat == "" || dadat == null)
             {
                 xacminhemail xc = new xacminhemail();
-                xc.Show();
+                xc.ShowDialog();
             }
 
         }
@@ -61,23 +81,6 @@ namespace _10A02app
             string[] LM = readfile.allLines("data\\app.a");
             return LM[linenum];
         }
-        public login(string[] args)
-        {
-            InitializeComponent();
-            PALATAPP.Readfile readfile = new PALATAPP.Readfile();
-            if (readfile.allText(checkout(8)) == null || readfile.allText(checkout(8)) == "")
-            {
-
-            }
-            else
-            {
-                onload();
-                onchecked();
-            }
-            Icon gc = new Icon(checkout(10));
-            this.Icon = gc;
-        }
-       
         private void button1_Click(object sender, EventArgs e)
         {
             string a = pass.Text;
@@ -170,6 +173,14 @@ namespace _10A02app
                                         i = 60;
                                         updatedata();
                                         name = glp[0];
+                                        PALATAPP.Readfile r = new PALATAPP.Readfile();
+                                        string dadat = r.allText(checkout(9));
+                                        if (dadat == "" || dadat == null)
+                                        {
+                                            MessageBox.Show("YÊU CẦU XÁC MINH EMAIL!", "ĐĂNG NHẬP", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                            string c = "";
+                                            File.WriteAllText(checkout(8), c);
+                                        }
 
                                     }
                                     else
@@ -183,10 +194,6 @@ namespace _10A02app
                                 }
                                 else
                                 {
-                                        string ac = "";
-                                        string bc = "";
-                                        string c = ac + "\n" + bc;
-                                    
                                 }
                             }
                             else

@@ -25,10 +25,7 @@ namespace UpdateService
                     client.Encoding = UTF8Encoding.UTF8;
                     string content = client.DownloadString("https://10a02.palat001.cf/data/source/app/version.a");
                     string[] lines = content.Split('\n');
-                    foreach (string line in lines)
-                    {
-                        version = line; 
-                    }
+                    version = lines[0];
                 }
             }
             catch

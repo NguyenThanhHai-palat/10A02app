@@ -92,15 +92,13 @@ namespace _10A02app
                 client.Encoding = UTF8Encoding.UTF8;
                 string content = client.DownloadString(checkout(3)+ "/data/source/app/version.a");
                 string[] lines = content.Split('\n');
-                foreach (string line in lines)
+                if (Application.ProductVersion.ToString() != lines[0])
                 {
-                    if (Application.ProductVersion.ToString() != line)
+                    DialogResult dialogResult = MessageBox.Show("Đã có phiên bản mới bạn có muốn cập nhật?", "Thông Báo Cập Nhật", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        DialogResult dialogResult = MessageBox.Show("Đã có phiên bản mới bạn có muốn cập nhật?","Thông Báo Cập Nhật",MessageBoxButtons.YesNo);
-                        if (dialogResult == DialogResult.Yes)
-                        {
-                            this.Close();
-                        }
+                        Process.Start("UpdateService.exe");
+                        this.Close();
                     }
                 }
             }
